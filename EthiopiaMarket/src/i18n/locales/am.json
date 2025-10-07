@@ -1,0 +1,111 @@
+{
+  "app": {
+    "name": "የኢትዮጵያ ገበያ",
+    "tagline": "በአካባቢዎ ይግዙ እና ይሽጡ"
+  },
+  "nav": {
+    "home": "መነሻ",
+    "categories": "ምድቦች",
+    "dashboard": "ዳሽቦርድ",
+    "admin": "አስተዳዳሪ",
+    "login": "ግባ",
+    "logout": "ውጣ"
+  },
+  "common": {
+    "search": "ፈልግ",
+    "filter": "አጣራ",
+    "category": "ምድብ",
+    "region": "ክልል",
+    "price": "ዋጋ",
+    "contact": "ያግኙ",
+    "save": "አስቀምጥ",
+    "cancel": "ሰርዝ",
+    "edit": "አስተካክል",
+    "delete": "ሰርዝ",
+    "submit": "ላክ",
+    "loading": "በመጫን ላይ...",
+    "noResults": "ምንም ውጤት አልተገኘም",
+    "viewAll": "ሁሉንም ይመልከቱ",
+    "back": "ተመለስ"
+  },
+  "categories": {
+    "electronics": "ኤሌክትሮኒክስ",
+    "vehicles": "ተሽከርካሪዎች",
+    "realestate": "ሪል እስቴት",
+    "fashion": "አልባሳት",
+    "home": "ቤት እና የአትክልት",
+    "services": "አገልግሎቶች",
+    "jobs": "ስራዎች",
+    "other": "ሌላ"
+  },
+  "regions": {
+    "addisababa": "አዲስ አበባ",
+    "oromia": "ኦሮሚያ",
+    "amhara": "አማራ",
+    "tigray": "ትግራይ",
+    "somali": "ሶማሊ",
+    "afar": "አፋር",
+    "sidama": "ሲዳማ",
+    "snnpr": "ደቡብ ብሔረሰቦች",
+    "other": "ሌላ"
+  },
+  "listing": {
+    "title": "ርዕስ",
+    "description": "መግለጫ",
+    "shortDescription": "አጭር መግለጫ",
+    "longDescription": "ሙሉ መግለጫ",
+    "images": "ምስሎች",
+    "uploadImages": "ምስሎችን ይጫኑ",
+    "contactMethods": "የመገናኛ መንገዶች",
+    "phone": "ስልክ ቁጥር",
+    "whatsapp": "ዋትስአፕ",
+    "telegram": "ቴሌግራም",
+    "email": "ኢሜይል",
+    "postedBy": "የተለጠፈው በ",
+    "postedOn": "የተለጠፈበት",
+    "views": "እይታዎች",
+    "contactSeller": "ሻጩን ያግኙ"
+  },
+  "create": {
+    "title": "አዲስ ማስታወቂያ ይፍጠሩ",
+    "step1": "መሰረታዊ መረጃ",
+    "step2": "መግለጫ",
+    "step3": "ምስሎች",
+    "step4": "የመገናኛ መረጃ",
+    "success": "ማስታወቂያ በተሳካ ሁኔታ ተፈጥሯል!",
+    "error": "ማስታወቂያ መፍጠር አልተሳካም"
+  },
+  "dashboard": {
+    "myListings": "የእኔ ማስታወቂያዎች",
+    "messages": "መልዕክቶች",
+    "createListing": "ማስታወቂያ ፍጠር",
+    "stats": "አኃዛዊ መረጃ",
+    "totalListings": "ጠቅላላ ማስታወቂያዎች",
+    "totalViews": "ጠቅላላ እይታዎች",
+    "activeListings": "ንቁ ማስታወቂያዎች"
+  },
+  "admin": {
+    "title": "የአስተዳዳሪ ዳሽቦርድ",
+    "pendingReview": "በመጠበቅ ላይ",
+    "reportedListings": "የተዘገቡ ማስታወቂያዎች",
+    "users": "ተጠቃሚዎች",
+    "approve": "ይፍቀዱ",
+    "reject": "ውድቅ ያድርጉ",
+    "ban": "ተጠቃሚን ያግዱ"
+  },
+  "settings": {
+    "language": "ቋንቋ",
+    "dataMode": "የመረጃ ሁኔታ",
+    "lowData": "ዝቅተኛ መረጃ ሁኔታ",
+    "normalData": "መደበኛ ሁኔታ",
+    "lowDataDesc": "ምስሎችን ባለመጫን መረጃን ይቆጥቡ"
+  },
+  "validation": {
+    "required": "ይህ መስክ ያስፈልጋል",
+    "minLength": "ዝቅተኛ ርዝመት {{count}} ቁምፊዎች ነው",
+    "maxLength": "ከፍተኛ ርዝመት {{count}} ቁምፊዎች ነው",
+    "invalidPhone": "ልክ ያልሆነ ስልክ ቁጥር ቅርጸት",
+    "invalidEmail": "ልክ ያልሆነ ኢሜይል አድራሻ"
+  }
+}
+

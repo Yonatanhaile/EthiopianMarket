@@ -1,0 +1,111 @@
+{
+  "app": {
+    "name": "Ethiopia Market",
+    "tagline": "Buy and Sell Locally"
+  },
+  "nav": {
+    "home": "Home",
+    "categories": "Categories",
+    "dashboard": "Dashboard",
+    "admin": "Admin",
+    "login": "Login",
+    "logout": "Logout"
+  },
+  "common": {
+    "search": "Search",
+    "filter": "Filter",
+    "category": "Category",
+    "region": "Region",
+    "price": "Price",
+    "contact": "Contact",
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete",
+    "submit": "Submit",
+    "loading": "Loading...",
+    "noResults": "No results found",
+    "viewAll": "View All",
+    "back": "Back"
+  },
+  "categories": {
+    "electronics": "Electronics",
+    "vehicles": "Vehicles",
+    "realestate": "Real Estate",
+    "fashion": "Fashion & Clothing",
+    "home": "Home & Garden",
+    "services": "Services",
+    "jobs": "Jobs",
+    "other": "Other"
+  },
+  "regions": {
+    "addisababa": "Addis Ababa",
+    "oromia": "Oromia",
+    "amhara": "Amhara",
+    "tigray": "Tigray",
+    "somali": "Somali",
+    "afar": "Afar",
+    "sidama": "Sidama",
+    "snnpr": "SNNPR",
+    "other": "Other"
+  },
+  "listing": {
+    "title": "Title",
+    "description": "Description",
+    "shortDescription": "Short Description",
+    "longDescription": "Full Description",
+    "images": "Images",
+    "uploadImages": "Upload Images",
+    "contactMethods": "Contact Methods",
+    "phone": "Phone Number",
+    "whatsapp": "WhatsApp",
+    "telegram": "Telegram",
+    "email": "Email",
+    "postedBy": "Posted by",
+    "postedOn": "Posted on",
+    "views": "views",
+    "contactSeller": "Contact Seller"
+  },
+  "create": {
+    "title": "Create New Listing",
+    "step1": "Basic Information",
+    "step2": "Description",
+    "step3": "Images",
+    "step4": "Contact Information",
+    "success": "Listing created successfully!",
+    "error": "Failed to create listing"
+  },
+  "dashboard": {
+    "myListings": "My Listings",
+    "messages": "Messages",
+    "createListing": "Create Listing",
+    "stats": "Statistics",
+    "totalListings": "Total Listings",
+    "totalViews": "Total Views",
+    "activeListings": "Active Listings"
+  },
+  "admin": {
+    "title": "Admin Dashboard",
+    "pendingReview": "Pending Review",
+    "reportedListings": "Reported Listings",
+    "users": "Users",
+    "approve": "Approve",
+    "reject": "Reject",
+    "ban": "Ban User"
+  },
+  "settings": {
+    "language": "Language",
+    "dataMode": "Data Mode",
+    "lowData": "Low Data Mode",
+    "normalData": "Normal Mode",
+    "lowDataDesc": "Save data by not loading images"
+  },
+  "validation": {
+    "required": "This field is required",
+    "minLength": "Minimum length is {{count}} characters",
+    "maxLength": "Maximum length is {{count}} characters",
+    "invalidPhone": "Invalid phone number format",
+    "invalidEmail": "Invalid email address"
+  }
+}
+
