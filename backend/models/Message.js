@@ -42,3 +42,4 @@ MessageSchema.index({ listing: 1 });
 
 module.exports = mongoose.model('Message', MessageSchema);
 
+

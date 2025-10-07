@@ -1,6 +1,7 @@
 const User = require('../models/User');
 const Listing = require('../models/Listing');
 const ErrorResponse = require('../utils/errorResponse');
+const logger = require('../utils/logger');
 const { uploadImage, deleteImage } = require('../utils/cloudinary');
 
 // @desc    Get user by ID
@@ -75,7 +76,7 @@ exports.updateAvatar = async (req, res, next) => {
       // Extract public ID from URL and delete
       const urlParts = user.avatar.split('/');
       const publicId = urlParts.slice(-2).join('/').split('.')[0];
-      await deleteImage(publicId).catch(err => console.error(err));
+      await deleteImage(publicId).catch(err => logger.error('Error deleting old avatar:', err));
     }
 
     // Upload new avatar
@@ -91,4 +92,5 @@ exports.updateAvatar = async (req, res, next) => {
     next(error);
   }
 };
+
 

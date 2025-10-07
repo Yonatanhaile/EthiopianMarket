@@ -45,7 +45,6 @@ export default function Login() {
       // Redirect to home
       navigate('/');
     } catch (err) {
-      console.error('Login error:', err);
       setError(err.message || err.error || 'Invalid email or password');
     } finally {
       setLoading(false);
@@ -61,10 +60,10 @@ export default function Login() {
             EM
           </div>
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            {t('auth.welcomeBack') || 'Welcome Back'}
+            {t('Welcome Back') || 'Welcome Back'}
           </h1>
           <p className="text-gray-600">
-            {t('auth.loginSubtitle') || 'Login to your account'}
+            {t('LoginSubtitle') || 'Login to your account'}
           </p>
         </div>
 
@@ -80,7 +79,7 @@ export default function Login() {
             {/* Email */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                {t('auth.email') || 'Email'}
+                {t('Email') || 'Email'}
               </label>
               <input
                 type="email"
@@ -97,7 +96,7 @@ export default function Login() {
             {/* Password */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                {t('auth.password') || 'Password'}
+                {t('Password') || 'Password'}
               </label>
               <input
                 type="password"
@@ -117,15 +116,15 @@ export default function Login() {
               disabled={loading}
               className="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed mt-6"
             >
-              {loading ? (t('common.loading') || 'Logging in...') : (t('auth.login') || 'Login')}
+              {loading ? (t('common.loading') || 'Logging in...') : (t('Login') || 'Login')}
             </button>
           </form>
 
           {/* Register Link */}
           <p className="mt-6 text-center text-sm text-gray-600">
-            {t('auth.dontHaveAccount') || "Don't have an account?"}{' '}
+            {t('dontHaveAccount') || "Don't have an account?"}{' '}
             <Link to="/register" className="text-green-600 hover:text-green-700 font-semibold">
-              {t('auth.registerHere') || 'Register here'}
+              {t('registerHere') || 'Register here'}
             </Link>
           </p>
         </div>

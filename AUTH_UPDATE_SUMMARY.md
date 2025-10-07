@@ -19,7 +19,7 @@
    - Added `updatePassword()` for changing password
    - Added proper error handling and logging
 
-3. **`backend/routes/auth.js`** - Updated routes:
+3. **`backend/routes/js`** - Updated routes:
    - Removed: `/auth/send-otp`, `/auth/verify-otp`
    - Kept: `/auth/register`, `/auth/login`
    - Added: `/auth/me` (get current user), `/auth/update` (update profile), `/auth/update-password`
@@ -133,4 +133,5 @@ The User collection now stores:
 4. Verify you can create listings, view profile, etc.
 5. (Optional) Add "Forgot Password" feature later
 6. (Optional) Add email verification for new registrations
+
 

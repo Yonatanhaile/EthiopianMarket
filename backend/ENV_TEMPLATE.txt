@@ -13,9 +13,9 @@ FRONTEND_URL=http://localhost:3001
 
 # Database
 # If using MongoDB Atlas, use your connection string:
-MONGO_URI=mongodb+srv://yonatan:1234@cluster0.ilfqt.mongodb.net/ethiopia-marketplace?retryWrites=true&w=majority&appName=Cluster0
+# MONGO_URI=mongodb+srv://username:password@cluster0.xxxxx.mongodb.net/ethiopia-marketplace?retryWrites=true&w=majority
 # Or for local MongoDB:
-# MONGO_URI=mongodb://localhost:27017/ethiopia-market
+MONGO_URI=mongodb://localhost:27017/ethiopia-market
 
 # JWT Configuration (REQUIRED)
 JWT_SECRET=ethiopiamarket-super-secret-jwt-key-2024-CHANGE-THIS-IN-PRODUCTION
@@ -31,4 +31,5 @@ TWILIO_MOCK_MODE=true
 TWILIO_ACCOUNT_SID=
 TWILIO_AUTH_TOKEN=
 TWILIO_PHONE_NUMBER=
+
 

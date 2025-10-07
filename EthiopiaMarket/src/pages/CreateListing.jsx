@@ -28,7 +28,6 @@ function CreateListing() {
   const onSubmit = async (data) => {
     // Only submit if we're on the final step
     if (step !== 4) {
-      console.log('Not on final step, advancing instead');
       nextStep();
       return;
     }
@@ -50,7 +49,6 @@ function CreateListing() {
       navigate('/dashboard');
     } catch (error) {
       alert(t('create.error'));
-      console.error(error);
     }
   };
 

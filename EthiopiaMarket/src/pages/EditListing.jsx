@@ -62,7 +62,6 @@ function EditListing() {
       navigate('/dashboard');
     } catch (error) {
       alert('Failed to update listing');
-      console.error(error);
     }
   };
 

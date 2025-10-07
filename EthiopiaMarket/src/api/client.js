@@ -38,10 +38,11 @@ const apiClient = async (endpoint, options = {}) => {
 
     return data;
   } catch (error) {
-    console.error('API Error:', error);
+    // Re-throw error for caller to handle
     throw error;
   }
 };
 
 export default apiClient;
+
 

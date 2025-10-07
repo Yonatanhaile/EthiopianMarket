@@ -24,7 +24,7 @@
 - ✅ Added `updateDetails()` for profile updates
 - ✅ Added `updatePassword()` for password changes
 
-#### **File: `backend/routes/auth.js`**
+#### **File: `backend/routes/js`**
 - ✅ Removed `/auth/send-otp` and `/auth/verify-otp` routes
 - ✅ Kept `/auth/register` and `/auth/login` with new logic
 - ✅ Added `/auth/update` and `/auth/update-password` routes
@@ -252,7 +252,7 @@ Seller profile link showed `/seller/undefined` because component expected `listi
    - **Fix:** Configure Cloudinary with real credentials
 
 3. ⚠️ **Translation Keys:**
-   - Some UI elements show keys like `auth.createAccount` instead of actual text
+   - Some UI elements show keys like `createAccount` instead of actual text
    - **Fix:** Add missing translations to `src/i18n/locales/en.json` and `am.json`
 
 ---
@@ -320,4 +320,5 @@ Created/Updated:
 **Status:** 🟢 **Production Ready** (with minor warnings)
 
 The marketplace is now fully functional with working authentication, listing creation, and all core features operational!
+
 

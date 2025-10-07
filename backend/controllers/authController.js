@@ -55,14 +55,6 @@ exports.register = async (req, res, next) => {
       }
     });
   } catch (error) {
-    // Log the full error for debugging
-    console.error('=== REGISTRATION ERROR DEBUG ===');
-    console.error('Error name:', error.name);
-    console.error('Error code:', error.code);
-    console.error('Error message:', error.message);
-    console.error('Full error:', JSON.stringify(error, Object.getOwnPropertyNames(error), 2));
-    console.error('================================');
-
     logger.error('Registration error:', {
       name: error.name,
       code: error.code,

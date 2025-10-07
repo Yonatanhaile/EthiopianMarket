@@ -417,3 +417,4 @@ npm run dev
 
 For production, simply add your Cloudinary credentials and real images will be uploaded and displayed automatically.
 
+

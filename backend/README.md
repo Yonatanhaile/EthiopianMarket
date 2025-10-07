@@ -32,7 +32,7 @@ backend/
 │   ├── usersController.js    # User management
 │   └── adminController.js    # Admin operations
 ├── middleware/
-│   ├── auth.js              # JWT authentication
+│   ├── js              # JWT authentication
 │   ├── errorHandler.js      # Error handling
 │   └── rateLimiter.js       # Rate limiting
 ├── models/
@@ -41,7 +41,7 @@ backend/
 │   ├── Message.js           # Message schema
 │   └── OTP.js               # OTP schema
 ├── routes/
-│   ├── auth.js              # Auth routes
+│   ├── js              # Auth routes
 │   ├── listings.js          # Listing routes
 │   ├── messages.js          # Message routes
 │   ├── users.js             # User routes
@@ -447,4 +447,5 @@ MIT License - See LICENSE file for details
 ---
 
 Built with ❤️ for Ethiopia
+
 

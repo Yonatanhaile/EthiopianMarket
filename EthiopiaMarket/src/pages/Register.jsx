@@ -66,7 +66,6 @@ export default function Register() {
       // Redirect to home
       navigate('/');
     } catch (err) {
-      console.error('Registration error:', err);
       setError(err.message || err.error || 'Failed to register. Please try again.');
     } finally {
       setLoading(false);
@@ -82,10 +81,10 @@ export default function Register() {
             EM
           </div>
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            {t('auth.createAccount') || 'Create Account'}
+            {t('createAccount') || 'Create Account'}
           </h1>
           <p className="text-gray-600">
-            {t('auth.registerSubtitle') || 'Join Ethiopia Market today'}
+            {t('registerSubtitle') || 'Join Ethiopia Market today'}
           </p>
         </div>
 
@@ -101,7 +100,7 @@ export default function Register() {
             {/* Name */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                {t('auth.fullName') || 'Full Name'} *
+                {t('fullName') || 'Full Name'} *
               </label>
               <input
                 type="text"
@@ -118,7 +117,7 @@ export default function Register() {
             {/* Email */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                {t('auth.email') || 'Email'} *
+                {t('Email') || 'Email'} *
               </label>
               <input
                 type="email"
@@ -135,7 +134,7 @@ export default function Register() {
             {/* Password */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                {t('auth.password') || 'Password'} *
+                {t('Password') || 'Password'} *
               </label>
               <input
                 type="password"
@@ -149,14 +148,14 @@ export default function Register() {
                 minLength={6}
               />
               <p className="mt-1 text-xs text-gray-500">
-                {t('auth.passwordRequirement') || 'Must be at least 6 characters'}
+                {t('PasswordRequirement') || 'Must be at least 6 characters'}
               </p>
             </div>
 
             {/* Confirm Password */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                {t('auth.confirmPassword') || 'Confirm Password'} *
+                {t('confirmPassword') || 'Confirm Password'} *
               </label>
               <input
                 type="password"
@@ -173,7 +172,7 @@ export default function Register() {
             {/* Phone (Optional) */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                {t('auth.phone') || 'Phone Number'} ({t('common.optional') || 'Optional'})
+                {t('phone') || 'Phone Number'} ({t('common.optional') || 'Optional'})
               </label>
               <input
                 type="tel"
@@ -192,22 +191,22 @@ export default function Register() {
               disabled={loading}
               className="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
             >
-              {loading ? (t('common.loading') || 'Creating Account...') : (t('auth.createAccount') || 'Create Account')}
+              {loading ? (t('common.loading') || 'Creating Account...') : (t('createAccount') || 'Create Account')}
             </button>
           </form>
 
           {/* Login Link */}
           <p className="mt-6 text-center text-sm text-gray-600">
-            {t('auth.alreadyHaveAccount') || 'Already have an account?'}{' '}
+            {t('alreadyHaveAccount') || 'Already have an account?'}{' '}
             <Link to="/login" className="text-green-600 hover:text-green-700 font-semibold">
-              {t('auth.loginHere') || 'Login here'}
+              {t('LoginHere') || 'Login here'}
             </Link>
           </p>
         </div>
 
         {/* Terms */}
         <p className="mt-6 text-center text-xs text-gray-500">
-          {t('auth.termsAgreement') || 'By continuing, you agree to our Terms of Service and Privacy Policy'}
+          {t('termsAgreement') || 'By continuing, you agree to our Terms of Service and Privacy Policy'}
         </p>
       </div>
     </div>
