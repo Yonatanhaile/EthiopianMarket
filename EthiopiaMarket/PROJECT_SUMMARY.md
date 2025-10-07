@@ -5,24 +5,37 @@ A complete, production-ready frontend for an Ethiopian marketplace. Built with m
 
 ## ✅ Completed Features
 
-### Core Pages (8)
-1. **Home/Discover** - Browse listings, search, category cards
-2. **Category Results** - Filtered listings with sidebar filters
-3. **Listing Detail** - Full listing view with contact options
-4. **Seller Profile** - View seller info and their listings
-5. **Seller Dashboard** - Manage listings, view stats, messages
-6. **Admin Dashboard** - Content moderation interface
-7. **Create Listing** - 4-step wizard with validation
-8. **Edit Listing** - Update existing listings
+### Core Pages (10)
+1. **Login** - OTP-based authentication with Ethiopian phone numbers
+2. **Register** - User registration with phone verification
+3. **Home/Discover** - Browse listings, search, category cards
+4. **Category Results** - Filtered listings with sidebar filters
+5. **Listing Detail** - Full listing view with contact options
+6. **Seller Profile** - View seller info and their listings
+7. **Seller Dashboard** - Manage listings, view stats, messages (Protected)
+8. **Admin Dashboard** - Content moderation interface (Protected)
+9. **Create Listing** - 4-step wizard with validation (Protected)
+10. **Edit Listing** - Update existing listings (Protected)
 
-### Core Components (10)
+### Core Components (12)
 - Layout, Header, Footer
 - SearchBar, FilterBar
 - ListingCard, LazyImage
 - ImageUpload with compression
 - ContactButtons with Ethiopian formatting
+- ProtectedRoute for authentication
+- AuthContext for user management
 
 ### Technical Implementation
+
+#### Authentication System
+- ✅ OTP-based login with Ethiopian phone numbers
+- ✅ User registration with phone verification
+- ✅ Protected routes (dashboard, create, edit, admin)
+- ✅ Session persistence with localStorage
+- ✅ Login/logout functionality
+- ✅ Redirect to intended page after login
+- ✅ User context for global state management
 
 #### i18n Support
 - ✅ English translations (60+ keys)
@@ -77,9 +90,9 @@ A complete, production-ready frontend for an Ethiopian marketplace. Built with m
 
 ## 📁 File Count
 
-- **Total Files**: 32
-- **Components**: 9
-- **Pages**: 8
+- **Total Files**: 37
+- **Components**: 11
+- **Pages**: 10
 - **Hooks**: 1
 - **Utilities**: 2
 - **API**: 1
@@ -89,11 +102,11 @@ A complete, production-ready frontend for an Ethiopian marketplace. Built with m
 
 ## 📊 Code Statistics
 
-- **JavaScript/JSX**: ~2,500 lines
+- **JavaScript/JSX**: ~3,200 lines
 - **JSON (i18n)**: ~300 lines
 - **CSS**: ~100 lines (+ Tailwind)
 - **Config**: ~200 lines
-- **Documentation**: ~600 lines
+- **Documentation**: ~1,200 lines
 
 ## 🎨 Design Features
 
@@ -124,6 +137,8 @@ POST   /api/listings              - Create listing
 PUT    /api/listings/:id          - Update listing
 POST   /api/messages              - Send message
 POST   /api/auth/otp              - Send OTP
+POST   /api/auth/verify-otp       - Verify OTP code
+POST   /api/auth/register         - Register new user
 GET    /api/users/:id             - Get user profile
 GET    /api/users/:id/listings    - Get user's listings
 ```
@@ -142,6 +157,9 @@ GET    /api/users/:id/listings    - Get user's listings
 
 ### What's Working
 - ✅ All pages render correctly
+- ✅ Authentication (login/register) works
+- ✅ Protected routes redirect to login
+- ✅ Session persistence across refreshes
 - ✅ Navigation works
 - ✅ Forms validate properly
 - ✅ Search and filters work

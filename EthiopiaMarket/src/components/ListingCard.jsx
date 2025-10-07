@@ -6,13 +6,16 @@ import LazyImage from './LazyImage';
 function ListingCard({ listing }) {
   const { t } = useTranslation();
   const { isLowDataMode } = useDataMode();
+  
+  // MongoDB returns _id, handle both id and _id
+  const listingId = listing.id || listing._id;
 
   return (
-    <Link to={`/listing/${listing.id}`} className="card hover:shadow-lg transition-shadow">
+    <Link to={`/listing/${listingId}`} className="card hover:shadow-lg transition-shadow">
       <div className="aspect-video relative">
-        {!isLowDataMode && listing.images?.[0] ? (
+        {!isLowDataMode && listing.images?.[0]?.url ? (
           <LazyImage 
-            src={listing.images[0]} 
+            src={listing.images[0].url} 
             alt={listing.title}
             className="w-full h-full object-cover"
           />

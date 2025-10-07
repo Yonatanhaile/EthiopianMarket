@@ -9,7 +9,8 @@
     "dashboard": "ዳሽቦርድ",
     "admin": "አስተዳዳሪ",
     "login": "ግባ",
-    "logout": "ውጣ"
+    "logout": "ውጣ",
+    "register": "ይመዝገቡ"
   },
   "common": {
     "search": "ፈልግ",

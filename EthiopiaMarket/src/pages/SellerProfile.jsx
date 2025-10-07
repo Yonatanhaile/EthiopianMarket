@@ -88,7 +88,7 @@ function SellerProfile() {
         {listingsData && listingsData.data.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {listingsData.data.map((listing) => (
-              <ListingCard key={listing.id} listing={listing} />
+              <ListingCard key={listing.id || listing._id} listing={listing} />
             ))}
           </div>
         )}

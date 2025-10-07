@@ -50,7 +50,7 @@ function AdminDashboard() {
         ) : (
           <div className="space-y-4">
             {data?.data.slice(0, 2).map((listing) => (
-              <div key={listing.id} className="flex items-center justify-between border border-gray-200 rounded-lg p-4">
+              <div key={listing.id || listing._id} className="flex items-center justify-between border border-gray-200 rounded-lg p-4">
                 <div className="flex-1">
                   <h3 className="font-semibold text-gray-900">{listing.title}</h3>
                   <p className="text-sm text-gray-600">{listing.sellerName}</p>

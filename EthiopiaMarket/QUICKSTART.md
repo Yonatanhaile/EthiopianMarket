@@ -27,6 +27,32 @@ The app will open at http://localhost:3000
 
 ## 3. Explore the Features
 
+### Authentication (NEW!)
+
+**Register a New Account:**
+1. Click "Register" button in header
+2. Fill in:
+   - Name: `Test User`
+   - Phone: `+251911234567` or `0911234567`
+   - Email: (optional)
+3. Click "Continue"
+4. Enter any 6-digit OTP (e.g., `123456`)
+5. Click "Verify & Create Account"
+6. You're now logged in!
+
+**Login with Existing Account:**
+1. Click "Login" in header
+2. Enter phone number: `+251922334455`
+3. Click "Send OTP"
+4. Enter any 6-digit code (e.g., `111111`)
+5. Click "Verify & Login"
+6. Redirected to dashboard
+
+**Test Protected Routes:**
+- Try accessing `/dashboard` without logging in → redirected to login
+- After login, you can access dashboard and create listings
+- Click "Logout" to end session
+
 ### Language Switching
 - Click the language button in the header (አማ/EN) to switch between English and Amharic
 
@@ -40,7 +66,10 @@ The app will open at http://localhost:3000
 - Use the search bar to find specific items
 
 ### Create a Listing
-1. Click "Create Listing" button on the home page or dashboard
+**Note: You must be logged in to create listings**
+
+1. Login/Register first (see Authentication above)
+2. Click "Create Listing" button on the home page or dashboard
 2. Fill out the 4-step wizard:
    - Step 1: Title, category, region
    - Step 2: Short and long descriptions
@@ -53,15 +82,17 @@ The app will open at http://localhost:3000
 - See contact options (phone, WhatsApp, Telegram, email)
 - View seller profile
 
-### Dashboard
+### Dashboard (Protected - Login Required)
 - Go to /dashboard to see seller dashboard
 - View your listings stats
 - Edit existing listings
+- View total views and active listings
 
-### Admin Dashboard
+### Admin Dashboard (Protected - Login Required)
 - Go to /admin for moderation interface
 - Approve/reject pending listings
 - View system statistics
+- Monitor user activity
 
 ## 4. Test Ethiopian-Specific Features
 

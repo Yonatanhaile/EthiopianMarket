@@ -5,12 +5,14 @@ A lightweight, mobile-first Ethiopian marketplace built with React + Vite. Desig
 ## Features
 
 ✨ **Core Functionality**
+- **Authentication**: OTP-based login and registration with Ethiopian phone numbers
 - Browse and search listings with category and region filters
 - Create and manage listings with multi-step wizard
 - Contact sellers via Phone, WhatsApp, Telegram, or Email
 - View seller profiles and their listings
-- Seller dashboard to manage listings and view statistics
-- Admin dashboard for content moderation
+- Seller dashboard to manage listings and view statistics (protected)
+- Admin dashboard for content moderation (protected)
+- Protected routes requiring authentication
 
 🌐 **Localization**
 - Full i18n support (English & Amharic)
@@ -99,13 +101,15 @@ EthiopiaMarket/
 │   │       └── am.json       # Amharic translations
 │   ├── pages/                # Route pages
 │   │   ├── Home.jsx
+│   │   ├── Login.jsx         # OTP-based authentication
+│   │   ├── Register.jsx      # User registration
 │   │   ├── CategoryResults.jsx
 │   │   ├── ListingDetail.jsx
 │   │   ├── SellerProfile.jsx
-│   │   ├── SellerDashboard.jsx
-│   │   ├── AdminDashboard.jsx
-│   │   ├── CreateListing.jsx
-│   │   └── EditListing.jsx
+│   │   ├── SellerDashboard.jsx  # Protected
+│   │   ├── AdminDashboard.jsx   # Protected
+│   │   ├── CreateListing.jsx    # Protected
+│   │   └── EditListing.jsx      # Protected
 │   ├── utils/
 │   │   ├── imageCompression.js  # Image compression utilities
 │   │   └── phoneFormat.js    # Ethiopian phone formatting
@@ -121,7 +125,26 @@ EthiopiaMarket/
 
 ## Key Features Implementation
 
-### 1. Multi-Language Support
+### 1. Authentication
+
+**OTP-Based Login:**
+- Enter Ethiopian phone number (+251 or 09 format)
+- Receive OTP via SMS (mocked in demo)
+- Enter 6-digit OTP to login
+- Session persisted in localStorage
+
+**Registration:**
+- Multi-step registration with phone verification
+- Collects: Name, Phone, Email (optional)
+- OTP verification required
+- Auto-login after successful registration
+
+**Protected Routes:**
+- Dashboard, Create Listing, Edit Listing, Admin Dashboard
+- Redirects to login page if not authenticated
+- Returns to intended page after login
+
+### 2. Multi-Language Support
 
 Toggle between English and Amharic using the language switcher in the header. All text is stored in `src/i18n/locales/`.
 
@@ -135,28 +158,28 @@ function MyComponent() {
 }
 ```
 
-### 2. Low-Data Mode
+### 3. Low-Data Mode
 
 Users can toggle low-data mode from the header (📵/📶 icon). When enabled:
 - Images are not loaded
 - Image placeholders are shown instead
 - Preference is saved to localStorage
 
-### 3. Image Upload with Compression
+### 4. Image Upload with Compression
 
 Images are automatically compressed before upload to reduce bandwidth usage:
 - Max file size: 0.5MB
 - Max dimensions: 1024x1024
 - Quality: 80%
 
-### 4. Ethiopian Phone Number Support
+### 5. Ethiopian Phone Number Support
 
 Phone numbers are formatted and validated for Ethiopian standards:
 - Accepts: `+251XXXXXXXXX` or `09XXXXXXXX`
 - Auto-formats for display
 - WhatsApp and Telegram links are generated automatically
 
-### 5. Form Validation
+### 6. Form Validation
 
 Create/Edit listing forms use React Hook Form with validation:
 - Required fields
@@ -164,7 +187,7 @@ Create/Edit listing forms use React Hook Form with validation:
 - Phone number format validation
 - Email format validation
 
-### 6. Multi-Step Listing Creation
+### 7. Multi-Step Listing Creation
 
 The create listing wizard has 4 steps:
 1. Basic Information (title, category, region)
@@ -211,6 +234,18 @@ Response: { success: boolean }
 ```javascript
 Body: { phoneNumber }
 Response: { success: boolean, message: string }
+```
+
+**POST /api/auth/verify-otp**
+```javascript
+Body: { phoneNumber, otp }
+Response: { success: boolean, token: string }
+```
+
+**POST /api/auth/register**
+```javascript
+Body: { name, phone, email }
+Response: { success: boolean, data: {...} }
 ```
 
 ### Replacing Mock API

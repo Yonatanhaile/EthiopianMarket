@@ -53,7 +53,7 @@ function ListingDetail() {
           {!isLowDataMode && listing.images && listing.images.length > 0 && (
             <div className="aspect-video relative">
               <LazyImage
-                src={listing.images[0]}
+                src={listing.images[0].url || listing.images[0]}
                 alt={listing.title}
                 className="w-full h-full object-cover"
               />
@@ -102,14 +102,14 @@ function ListingDetail() {
                 {t('listing.postedBy')}
               </h2>
               <Link
-                to={`/seller/${listing.sellerId}`}
+                to={`/seller/${listing.seller?._id || listing.seller?.id || listing.seller}`}
                 className="flex items-center space-x-3 hover:bg-gray-50 p-3 rounded-lg transition-colors"
               >
                 <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center">
                   <span className="text-2xl">👤</span>
                 </div>
                 <div>
-                  <div className="font-medium text-gray-900">{listing.sellerName}</div>
+                  <div className="font-medium text-gray-900">{listing.seller?.name || 'Unknown Seller'}</div>
                   <div className="text-sm text-gray-600">View profile →</div>
                 </div>
               </Link>

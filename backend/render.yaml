@@ -1,0 +1,41 @@
+# Render.com deployment configuration
+services:
+  # Backend API
+  - type: web
+    name: ethiopia-market-api
+    runtime: node
+    plan: starter
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        fromDatabase:
+          name: ethiopia-market-db
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false
+      - key: TWILIO_ACCOUNT_SID
+        sync: false
+      - key: TWILIO_AUTH_TOKEN
+        sync: false
+      - key: TWILIO_PHONE_NUMBER
+        sync: false
+      - key: TWILIO_MOCK_MODE
+        value: false
+      - key: FRONTEND_URL
+        value: https://ethiopia-market.onrender.com
+    healthCheckPath: /health
+
+databases:
+  - name: ethiopia-market-db
+    databaseName: ethiopia-market
+    plan: starter
+

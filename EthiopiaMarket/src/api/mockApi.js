@@ -1,4 +1,5 @@
-// Mock API for development
+// Real API implementation
+import apiClient from './client';
 
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -89,104 +90,125 @@ const mockUsers = {
 export const api = {
   // GET /api/listings
   getListings: async (filters = {}) => {
-    await delay(500);
+    const queryParams = new URLSearchParams();
     
-    let filtered = [...mockListings];
+    if (filters.category) queryParams.append('category', filters.category);
+    if (filters.region) queryParams.append('region', filters.region);
+    if (filters.search) queryParams.append('search', filters.search);
+    if (filters.page) queryParams.append('page', filters.page);
+    if (filters.limit) queryParams.append('limit', filters.limit);
     
-    if (filters.category) {
-      filtered = filtered.filter(l => l.category === filters.category);
-    }
-    
-    if (filters.region) {
-      filtered = filtered.filter(l => l.region === filters.region);
-    }
-    
-    if (filters.search) {
-      const search = filters.search.toLowerCase();
-      filtered = filtered.filter(l => 
-        l.title.toLowerCase().includes(search) ||
-        l.shortDescription.toLowerCase().includes(search)
-      );
-    }
-    
-    return {
-      data: filtered,
-      total: filtered.length
-    };
+    const response = await apiClient(`/listings?${queryParams.toString()}`);
+    return response;
   },
 
   // GET /api/listings/:id
   getListingById: async (id) => {
-    await delay(300);
-    const listing = mockListings.find(l => l.id === id);
-    if (!listing) {
-      throw new Error('Listing not found');
-    }
-    return { data: listing };
+    const response = await apiClient(`/listings/${id}`);
+    // Increment view count
+    await apiClient(`/listings/${id}/view`, { method: 'PUT' }).catch(() => {});
+    return response;
   },
 
   // POST /api/listings
   createListing: async (listingData) => {
-    await delay(800);
-    
-    const newListing = {
-      id: Math.random().toString(36).substr(2, 9),
-      ...listingData,
-      sellerId: 'current-user',
-      sellerName: 'Current User',
-      views: 0,
-      createdAt: new Date().toISOString(),
-      status: 'active'
-    };
-    
-    mockListings.unshift(newListing);
-    return { data: newListing };
+    const response = await apiClient('/listings', {
+      method: 'POST',
+      body: JSON.stringify(listingData)
+    });
+    return response;
   },
 
   // PUT /api/listings/:id
   updateListing: async (id, listingData) => {
-    await delay(600);
-    const index = mockListings.findIndex(l => l.id === id);
-    if (index === -1) {
-      throw new Error('Listing not found');
-    }
-    mockListings[index] = { ...mockListings[index], ...listingData };
-    return { data: mockListings[index] };
+    const response = await apiClient(`/listings/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(listingData)
+    });
+    return response;
   },
 
   // POST /api/messages
   sendMessage: async (messageData) => {
-    await delay(500);
-    return { 
-      success: true, 
-      message: 'Message sent successfully' 
-    };
+    const response = await apiClient('/messages', {
+      method: 'POST',
+      body: JSON.stringify(messageData)
+    });
+    return response;
   },
 
-  // POST /api/auth/otp
-  sendOTP: async (phoneNumber) => {
-    await delay(1000);
-    return { 
-      success: true, 
-      message: 'OTP sent to ' + phoneNumber 
-    };
+  // POST /api/auth/register
+  registerUser: async (userData) => {
+    const response = await apiClient('/auth/register', {
+      method: 'POST',
+      body: JSON.stringify(userData)
+    });
+    return response;
+  },
+
+  // POST /api/auth/login
+  loginUser: async (email, password) => {
+    const response = await apiClient('/auth/login', {
+      method: 'POST',
+      body: JSON.stringify({ email, password })
+    });
+    return response;
   },
 
   // GET /api/users/:id
   getUserById: async (id) => {
-    await delay(300);
-    const user = mockUsers[id];
-    if (!user) {
-      throw new Error('User not found');
-    }
-    return { data: user };
+    const response = await apiClient(`/users/${id}`);
+    return response;
   },
 
   // GET /api/users/:id/listings
   getUserListings: async (userId) => {
-    await delay(400);
-    const listings = mockListings.filter(l => l.sellerId === userId);
-    return { data: listings };
+    const response = await apiClient(`/users/${userId}/listings`);
+    return response;
+  },
+
+  // GET /api/admin/stats
+  getAdminStats: async () => {
+    const response = await apiClient('/admin/stats');
+    return response;
+  },
+
+  // GET /api/admin/listings/pending
+  getPendingListings: async () => {
+    const response = await apiClient('/admin/listings/pending');
+    return response;
+  },
+
+  // PUT /api/admin/listings/:id/approve
+  approveListing: async (id) => {
+    const response = await apiClient(`/admin/listings/${id}/approve`, {
+      method: 'PUT'
+    });
+    return response;
+  },
+
+  // PUT /api/admin/listings/:id/reject
+  rejectListing: async (id, reason) => {
+    const response = await apiClient(`/admin/listings/${id}/reject`, {
+      method: 'PUT',
+      body: JSON.stringify({ reason })
+    });
+    return response;
   }
 };
+
+// Export individual functions for easier importing
+export const getListings = api.getListings;
+export const getListingById = api.getListingById;
+export const createListing = api.createListing;
+export const updateListing = api.updateListing;
+export const sendMessage = api.sendMessage;
+export const registerUser = api.registerUser;
+export const loginUser = api.loginUser;
+export const getUserById = api.getUserById;
+export const getUserListings = api.getUserListings;
+export const getAdminStats = api.getAdminStats;
+export const getPendingListings = api.getPendingListings;
+export const approveListing = api.approveListing;
+export const rejectListing = api.rejectListing;
 

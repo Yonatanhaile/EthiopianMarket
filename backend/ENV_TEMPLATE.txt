@@ -1,0 +1,34 @@
+# Copy this file to .env in the backend directory
+# Command: cp backend/ENV_TEMPLATE.txt backend/.env
+# Then edit backend/.env with your actual values
+
+# Environment
+NODE_ENV=development
+
+# Server
+PORT=5000
+
+# Frontend URL (update if frontend runs on different port)
+FRONTEND_URL=http://localhost:3001
+
+# Database
+# If using MongoDB Atlas, use your connection string:
+MONGO_URI=mongodb+srv://yonatan:1234@cluster0.ilfqt.mongodb.net/ethiopia-marketplace?retryWrites=true&w=majority&appName=Cluster0
+# Or for local MongoDB:
+# MONGO_URI=mongodb://localhost:27017/ethiopia-market
+
+# JWT Configuration (REQUIRED)
+JWT_SECRET=ethiopiamarket-super-secret-jwt-key-2024-CHANGE-THIS-IN-PRODUCTION
+JWT_EXPIRE=30d
+
+# Cloudinary (Optional - uses placeholders if not configured)
+CLOUDINARY_CLOUD_NAME=demo
+CLOUDINARY_API_KEY=demo
+CLOUDINARY_API_SECRET=demo
+
+# Twilio (Not used - OTP system replaced with email/password)
+TWILIO_MOCK_MODE=true
+TWILIO_ACCOUNT_SID=
+TWILIO_AUTH_TOKEN=
+TWILIO_PHONE_NUMBER=
+

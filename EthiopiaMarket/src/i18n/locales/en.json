@@ -9,7 +9,8 @@
     "dashboard": "Dashboard",
     "admin": "Admin",
     "login": "Login",
-    "logout": "Logout"
+    "logout": "Logout",
+    "register": "Register"
   },
   "common": {
     "search": "Search",

@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useAuth } from '../contexts/AuthContext';
 import { useUserListings } from '../hooks/useListings';
 import ListingCard from '../components/ListingCard';
 
 function SellerDashboard() {
   const { t } = useTranslation();
-  const currentUserId = 'seller1'; // Mock current user
+  const { user } = useAuth();
   
-  const { data, isLoading } = useUserListings(currentUserId);
+  const { data, isLoading } = useUserListings(user?.id);
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -82,19 +83,22 @@ function SellerDashboard() {
 
         {data && data.data.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {data.data.map((listing) => (
-              <div key={listing.id} className="relative">
-                <ListingCard listing={listing} />
-                <div className="absolute top-2 right-2 flex gap-2">
-                  <Link
-                    to={`/dashboard/edit/${listing.id}`}
-                    className="bg-white rounded-full p-2 shadow-md hover:bg-gray-100"
-                  >
-                    ✏️
-                  </Link>
+            {data.data.map((listing) => {
+              const listingId = listing.id || listing._id;
+              return (
+                <div key={listingId} className="relative">
+                  <ListingCard listing={listing} />
+                  <div className="absolute top-2 right-2 flex gap-2">
+                    <Link
+                      to={`/dashboard/edit/${listingId}`}
+                      className="bg-white rounded-full p-2 shadow-md hover:bg-gray-100"
+                    >
+                      ✏️
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
       </div>

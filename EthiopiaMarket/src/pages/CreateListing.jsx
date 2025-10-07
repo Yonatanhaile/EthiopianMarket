@@ -26,6 +26,13 @@ function CreateListing() {
   ];
 
   const onSubmit = async (data) => {
+    // Only submit if we're on the final step
+    if (step !== 4) {
+      console.log('Not on final step, advancing instead');
+      nextStep();
+      return;
+    }
+
     try {
       const listingData = {
         ...data,
@@ -310,21 +317,21 @@ function CreateListing() {
               ← {t('common.back')}
             </button>
 
-            {step < 4 ? (
-              <button
-                type="button"
-                onClick={nextStep}
-                className="btn-primary"
-              >
-                Next →
-              </button>
-            ) : (
+            {step === 4 ? (
               <button
                 type="submit"
                 disabled={createListingMutation.isPending}
                 className="btn-primary disabled:opacity-50"
               >
                 {createListingMutation.isPending ? t('common.loading') : t('common.submit')}
+              </button>
+            ) : (
+              <button
+                type="button"
+                onClick={nextStep}
+                className="btn-primary"
+              >
+                Next →
               </button>
             )}
           </div>
