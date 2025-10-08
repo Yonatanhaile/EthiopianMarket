@@ -47,6 +47,29 @@ exports.authorize = (...roles) => {
   };
 };
 
+// Optional authentication - doesn't fail if no token present
+exports.optionalAuth = async (req, res, next) => {
+  let token;
+
+  if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+    token = req.headers.authorization.split(' ')[1];
+  }
+
+  if (!token) {
+    // No token provided - continue without authentication
+    return next();
+  }
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = await User.findById(decoded.id).select('-__v');
+    next();
+  } catch (error) {
+    // Invalid token - continue without authentication rather than failing
+    next();
+  }
+};
+
 // Check if user owns the resource
 exports.checkOwnership = (model) => {
   return async (req, res, next) => {

@@ -37,19 +37,43 @@ exports.getUserListings = async (req, res, next) => {
       seller: req.params.id
     };
 
+    // DEBUG LOGGING
+    console.log('=== getUserListings DEBUG ===');
+    console.log('req.params.id:', req.params.id);
+    console.log('req.user:', req.user ? {
+      id: req.user.id,
+      _id: req.user._id,
+      name: req.user.name,
+      role: req.user.role
+    } : 'NOT AUTHENTICATED');
+
     // Only filter by status if explicitly provided
     // This allows owners to see all their listings (pending, active, rejected, etc.)
     // But public viewers only see active listings
     if (status) {
       query.status = status;
+      console.log('Status filter from query params:', status);
     } else {
       // If viewing own listings (authenticated and owner), show all statuses
       // Otherwise, only show active listings
-      const isOwner = req.user && req.user.id === req.params.id;
+      const userId = (req.user && (req.user.id || req.user._id))?.toString();
+      const paramId = req.params.id?.toString();
+      const isOwner = userId && paramId && userId === paramId;
+      
+      console.log('userId:', userId);
+      console.log('paramId:', paramId);
+      console.log('isOwner:', isOwner);
+      
       if (!isOwner) {
         query.status = 'active';
+        console.log('NOT OWNER - filtering to active only');
+      } else {
+        console.log('IS OWNER - showing all statuses');
       }
     }
+
+    console.log('Final query:', query);
+    console.log('=========================');
 
     const listings = await Listing.find(query)
       .sort('-createdAt')
@@ -59,6 +83,16 @@ exports.getUserListings = async (req, res, next) => {
       .lean();
 
     const total = await Listing.countDocuments(query);
+
+    console.log('Found listings count:', listings.length);
+    console.log('Total in database:', total);
+    if (listings.length > 0) {
+      console.log('First listing:', {
+        title: listings[0].title,
+        status: listings[0].status,
+        seller: listings[0].seller
+      });
+    }
 
     res.status(200).json({
       success: true,

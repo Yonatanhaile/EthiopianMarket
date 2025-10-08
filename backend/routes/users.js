@@ -5,11 +5,11 @@ const {
   getUserListings,
   updateAvatar
 } = require('../controllers/usersController');
-const { protect } = require('../middleware/auth');
+const { protect, optionalAuth } = require('../middleware/auth');
 
 // Public routes
 router.get('/:id', getUser);
-router.get('/:id/listings', getUserListings);
+router.get('/:id/listings', optionalAuth, getUserListings);
 
 // Protected routes
 router.put('/avatar', protect, updateAvatar);

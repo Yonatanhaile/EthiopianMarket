@@ -4,18 +4,23 @@ import {
   useAdminStats, 
   usePendingListings, 
   useApproveListing, 
-  useRejectListing 
+  useRejectListing,
+  useListings,
+  useDeleteListing
 } from '../hooks/useListings';
 
 function AdminDashboard() {
   const { t } = useTranslation();
   const [selectedListing, setSelectedListing] = useState(null);
   const [rejectReason, setRejectReason] = useState('');
+  const [showAllListings, setShowAllListings] = useState(false);
   
   const { data: stats, isLoading: statsLoading, error: statsError } = useAdminStats();
   const { data: pendingData, isLoading: pendingLoading, error: pendingError } = usePendingListings();
+  const { data: allListings, isLoading: allListingsLoading } = useListings({ limit: 100 });
   const approveMutation = useApproveListing();
   const rejectMutation = useRejectListing();
+  const deleteMutation = useDeleteListing();
 
   // Debug logging
   console.log('AdminDashboard - Stats:', stats);
@@ -43,6 +48,15 @@ function AdminDashboard() {
       } catch (error) {
         alert('Failed to reject listing: ' + (error.message || 'Unknown error'));
       }
+    }
+  };
+
+  const handleDeleteListing = async (listingId, title, status) => {
+    try {
+      await deleteMutation.mutateAsync(listingId);
+      alert(`✅ "${title}" deleted successfully!`);
+    } catch (error) {
+      alert('❌ Failed to delete listing: ' + (error.message || 'Unknown error'));
     }
   };
 
@@ -190,6 +204,118 @@ function AdminDashboard() {
             <p className="text-xl text-gray-600">No pending listings</p>
             <p className="text-sm text-gray-500 mt-2">All listings have been reviewed</p>
           </div>
+        )}
+      </div>
+
+      {/* All Listings Management */}
+      <div className="bg-white rounded-lg shadow-md p-6">
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-xl font-bold text-gray-900">
+            All Listings Management
+          </h2>
+          <button
+            onClick={() => setShowAllListings(!showAllListings)}
+            className="btn-outline"
+          >
+            {showAllListings ? '▲ Hide' : '▼ Show All Listings'}
+          </button>
+        </div>
+
+        {showAllListings && (
+          <>
+            {allListingsLoading ? (
+              <div className="space-y-4">
+                {[1, 2, 3].map((i) => (
+                  <div key={i} className="skeleton h-32 w-full" />
+                ))}
+              </div>
+            ) : allListings?.data && allListings.data.length > 0 ? (
+              <>
+                <p className="text-sm text-gray-600 mb-4">
+                  Total: {allListings.total} listings | Showing: {allListings.data.length}
+                </p>
+                <div className="space-y-3">
+                  {allListings.data.map((listing) => {
+                    const listingId = listing.id || listing._id;
+                    const statusColors = {
+                      pending: 'bg-orange-100 text-orange-800',
+                      active: 'bg-green-100 text-green-800',
+                      rejected: 'bg-red-100 text-red-800',
+                      expired: 'bg-gray-100 text-gray-800',
+                      sold: 'bg-blue-100 text-blue-800'
+                    };
+                    return (
+                      <div
+                        key={listingId}
+                        className="border border-gray-200 rounded-lg p-4 hover:border-gray-300 transition-colors"
+                      >
+                        <div className="flex items-center justify-between">
+                          <div className="flex-1">
+                            <div className="flex items-center gap-3 mb-2">
+                              <h3 className="font-semibold text-gray-900">
+                                {listing.title}
+                              </h3>
+                              <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${statusColors[listing.status] || 'bg-gray-100 text-gray-800'}`}>
+                                {listing.status?.toUpperCase() || 'UNKNOWN'}
+                              </span>
+                            </div>
+                            <div className="text-sm text-gray-600 space-y-1">
+                              <div>
+                                <span className="font-medium">Category:</span> {listing.category} | 
+                                <span className="font-medium"> Region:</span> {listing.region}
+                              </div>
+                              <div>
+                                <span className="font-medium">Seller:</span> {listing.seller?.name || 'Unknown'} | 
+                                <span className="font-medium"> Views:</span> {listing.views || 0}
+                              </div>
+                              <div>
+                                <span className="font-medium">Created:</span> {new Date(listing.createdAt).toLocaleDateString()}
+                              </div>
+                            </div>
+                          </div>
+                          
+                          <div className="flex gap-2">
+                            {listing.status === 'pending' && (
+                              <>
+                                <button
+                                  onClick={() => handleApprove(listingId, listing.title)}
+                                  disabled={approveMutation.isPending || rejectMutation.isPending || deleteMutation.isPending}
+                                  className="bg-green-500 text-white px-3 py-1 rounded text-sm hover:bg-green-600 transition-colors disabled:opacity-50"
+                                  title="Approve"
+                                >
+                                  ✅
+                                </button>
+                                <button
+                                  onClick={() => handleReject(listingId, listing.title)}
+                                  disabled={approveMutation.isPending || rejectMutation.isPending || deleteMutation.isPending}
+                                  className="bg-orange-500 text-white px-3 py-1 rounded text-sm hover:bg-orange-600 transition-colors disabled:opacity-50"
+                                  title="Reject"
+                                >
+                                  ❌
+                                </button>
+                              </>
+                            )}
+                            <button
+                              onClick={() => handleDeleteListing(listingId, listing.title, listing.status)}
+                              disabled={approveMutation.isPending || rejectMutation.isPending || deleteMutation.isPending}
+                              className="bg-red-600 text-white px-3 py-1 rounded text-sm hover:bg-red-700 transition-colors disabled:opacity-50"
+                              title="Delete Permanently"
+                            >
+                              🗑️ Delete
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </>
+            ) : (
+              <div className="text-center py-8">
+                <p className="text-gray-600">No listings found</p>
+              </div>
+            )}
+          </>
         )}
       </div>
     </div>

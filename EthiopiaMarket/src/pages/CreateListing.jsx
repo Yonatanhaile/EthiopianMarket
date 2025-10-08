@@ -31,6 +31,20 @@ function CreateListing() {
       return; // Prevent any submission on non-final steps
     }
 
+    // Validate at least one image
+    if (images.length === 0) {
+      alert('⚠️ Please upload at least one image before submitting.');
+      setStep(3); // Go back to image upload step
+      return;
+    }
+
+    // Validate at least one contact method
+    const hasContact = data.phone || data.whatsapp || data.telegram || data.email;
+    if (!hasContact) {
+      alert('⚠️ Please provide at least one contact method (phone, WhatsApp, Telegram, or email).');
+      return;
+    }
+
     try {
       const listingData = {
         ...data,
@@ -55,6 +69,13 @@ function CreateListing() {
     if (e) {
       e.preventDefault(); // Prevent form submission
     }
+    
+    // Validate images before moving to step 4
+    if (step === 3 && images.length === 0) {
+      alert('⚠️ Please upload at least one image before continuing.');
+      return;
+    }
+    
     setStep(s => Math.min(s + 1, 4));
   };
   
@@ -178,16 +199,15 @@ function CreateListing() {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {t('listing.shortDescription')} *
+                  {t('listing.shortDescription')} (Optional)
                 </label>
                 <input
                   type="text"
                   {...register('shortDescription', { 
-                    required: t('validation.required'),
                     maxLength: { value: 100, message: t('validation.maxLength', { count: 100 }) }
                   })}
                   className="input-field"
-                  placeholder="Brief summary (max 100 characters)"
+                  placeholder="Brief summary (max 100 characters) - Optional"
                 />
                 {errors.shortDescription && (
                   <p className="text-red-600 text-sm mt-1">{errors.shortDescription.message}</p>
@@ -196,15 +216,12 @@ function CreateListing() {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {t('listing.longDescription')} *
+                  {t('listing.longDescription')} (Optional)
                 </label>
                 <textarea
-                  {...register('longDescription', { 
-                    required: t('validation.required'),
-                    minLength: { value: 20, message: t('validation.minLength', { count: 20 }) }
-                  })}
+                  {...register('longDescription')}
                   className="input-field min-h-[200px]"
-                  placeholder="Detailed description of your item..."
+                  placeholder="Detailed description of your item - Optional"
                 />
                 {errors.longDescription && (
                   <p className="text-red-600 text-sm mt-1">{errors.longDescription.message}</p>
@@ -222,12 +239,15 @@ function CreateListing() {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {t('listing.uploadImages')}
+                  {t('listing.uploadImages')} * (At least 1 required)
                 </label>
                 <ImageUpload images={images} onChange={setImages} />
                 <p className="text-sm text-gray-500 mt-2">
-                  Images are automatically compressed to save bandwidth
+                  Upload up to 5 images. They are automatically compressed to save bandwidth.
                 </p>
+                {images.length === 0 && (
+                  <p className="text-red-600 text-sm mt-1">Please upload at least one image</p>
+                )}
               </div>
             </div>
           )}
@@ -239,8 +259,8 @@ function CreateListing() {
                 {t('create.step4')}
               </h2>
 
-              <p className="text-sm text-gray-600 mb-4">
-                Provide at least one contact method
+              <p className="text-sm text-red-600 mb-4 font-medium">
+                * At least one contact method is required
               </p>
 
               <div>

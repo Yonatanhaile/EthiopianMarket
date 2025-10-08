@@ -254,3 +254,72 @@
 {"level":"info","message":"Listing approved: 68e5f24a7e119d57db3c6bfd by admin 68e4f661e2a4ecd91d1fbcf2","timestamp":"2025-10-08T05:20:35.239Z"}
 {"level":"info","message":"Listing approved: 68e5ef1ccc97f8c4e9361ab2 by admin 68e4f661e2a4ecd91d1fbcf2","timestamp":"2025-10-08T05:20:49.024Z"}
 {"level":"info","message":"Listing approved: 68e5ede5cc97f8c4e9361a9a by admin 68e4f661e2a4ecd91d1fbcf2","timestamp":"2025-10-08T05:21:00.455Z"}
+{"level":"info","message":"Server running in development mode on port 5000","timestamp":"2025-10-08T05:24:02.972Z"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2025-10-08T05:24:03.007Z"}
+{"level":"info","message":"Uploaded 1 images","timestamp":"2025-10-08T05:24:41.722Z"}
+{"level":"info","message":"New listing created: 68e5f5990cf5114eb6a03557 by user 68e5e550d9975644994b5e16","timestamp":"2025-10-08T05:24:41.752Z"}
+{"level":"info","message":"Listing rejected: 68e5f5990cf5114eb6a03557 by admin 68e4f661e2a4ecd91d1fbcf2. Reason: similar content","timestamp":"2025-10-08T05:25:29.260Z"}
+{"level":"info","message":"Server running in development mode on port 5000","timestamp":"2025-10-08T05:37:26.757Z"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2025-10-08T05:37:26.797Z"}
+{"level":"info","message":"User logged in: 68e4f661e2a4ecd91d1fbcf2","timestamp":"2025-10-08T05:37:48.844Z"}
+{"level":"info","message":"Uploaded 1 images","timestamp":"2025-10-08T05:38:58.340Z"}
+{"level":"info","message":"New listing created: 68e5f8f2f8f4b3ded028f0a6 by user 68e4f661e2a4ecd91d1fbcf2","timestamp":"2025-10-08T05:38:58.387Z"}
+{"level":"info","message":"Server running in development mode on port 5000","timestamp":"2025-10-08T05:43:26.407Z"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2025-10-08T05:43:26.436Z"}
+{"level":"info","message":"New listing created: 68e5fa2dd012ffece9a6cf78 by user 68e4f661e2a4ecd91d1fbcf2","timestamp":"2025-10-08T05:44:13.838Z"}
+{"level":"info","message":"New listing created: 68e5fa5bd012ffece9a6cf81 by user 68e5e550d9975644994b5e16","timestamp":"2025-10-08T05:44:59.640Z"}
+{"level":"info","message":"Server running in development mode on port 5000","timestamp":"2025-10-08T05:48:45.469Z"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2025-10-08T05:48:45.484Z"}
+{"level":"info","message":"Server running in development mode on port 5000","timestamp":"2025-10-08T05:51:25.324Z"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2025-10-08T05:51:25.357Z"}
+{"level":"info","message":"Listing approved: 68e5f8f2f8f4b3ded028f0a6 by admin 68e4f661e2a4ecd91d1fbcf2","timestamp":"2025-10-08T05:53:07.005Z"}
+{"level":"info","message":"Listing rejected: 68e5fa2dd012ffece9a6cf78 by admin 68e4f661e2a4ecd91d1fbcf2. Reason: noting to list","timestamp":"2025-10-08T05:53:24.260Z"}
+{"level":"info","message":"Listing approved: 68e5fa5bd012ffece9a6cf81 by admin 68e4f661e2a4ecd91d1fbcf2","timestamp":"2025-10-08T05:53:32.018Z"}
+{"level":"info","message":"Server running in development mode on port 5000","timestamp":"2025-10-08T05:57:32.691Z"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2025-10-08T05:57:32.728Z"}
+{"level":"info","message":"New listing created: 68e5fd6314cc3387d5fe2a4e by user 68e5e550d9975644994b5e16","timestamp":"2025-10-08T05:57:55.747Z"}
+{"level":"info","message":"Listing deleted: 68e5fa5bd012ffece9a6cf81","timestamp":"2025-10-08T06:02:11.892Z"}
+{"level":"info","message":"Deleted image: ethiopia-market/listings/vfvfnud0uvtx3d3a2agw","timestamp":"2025-10-08T06:02:16.423Z"}
+{"level":"info","message":"Listing deleted: 68e5f8f2f8f4b3ded028f0a6","timestamp":"2025-10-08T06:02:16.427Z"}
+{"level":"info","message":"Deleted image: ethiopia-market/listings/zpkmkebfgaeffpnhisim","timestamp":"2025-10-08T06:02:19.666Z"}
+{"level":"info","message":"Listing deleted: 68e5f24a7e119d57db3c6bfd","timestamp":"2025-10-08T06:02:19.669Z"}
+{"level":"info","message":"Deleted image: ethiopia-market/listings/mikqaoiexg7nd2zzngyt","timestamp":"2025-10-08T06:02:22.703Z"}
+{"level":"info","message":"Listing deleted: 68e5ef1ccc97f8c4e9361ab2","timestamp":"2025-10-08T06:02:22.710Z"}
+{"level":"info","message":"Deleted image: ethiopia-market/listings/cm3ntl1mbhfdrxl434hy","timestamp":"2025-10-08T06:02:26.403Z"}
+{"level":"info","message":"Listing deleted: 68e5ede5cc97f8c4e9361a9a","timestamp":"2025-10-08T06:02:26.406Z"}
+{"level":"info","message":"Deleted image: ethiopia-market/listings/idiixbcflandvgcjkw23","timestamp":"2025-10-08T06:02:30.225Z"}
+{"level":"info","message":"Deleted image: ethiopia-market/listings/xaayd6pnxjhh8wdybnml","timestamp":"2025-10-08T06:02:30.735Z"}
+{"level":"info","message":"Listing deleted: 68e5ec85d9975644994b5ee2","timestamp":"2025-10-08T06:02:30.739Z"}
+{"level":"info","message":"Deleted image: ethiopia-market/listings/enffvlij7blzzacorexz","timestamp":"2025-10-08T06:02:35.078Z"}
+{"level":"info","message":"Listing deleted: 68e5e692d9975644994b5e40","timestamp":"2025-10-08T06:02:35.082Z"}
+{"level":"info","message":"Deleted image: ethiopia-market/listings/tlmqdobbicj1ruhvijly","timestamp":"2025-10-08T06:02:38.404Z"}
+{"level":"info","message":"Listing deleted: 68e5e595d9975644994b5e1b","timestamp":"2025-10-08T06:02:38.408Z"}
+{"level":"info","message":"Deleted image: ethiopia-market/listings/gayyolcecjw9fdyh1bty","timestamp":"2025-10-08T06:02:52.906Z"}
+{"level":"info","message":"Listing deleted: 68e585e4c1096cd1b9929088","timestamp":"2025-10-08T06:02:52.909Z"}
+{"level":"info","message":"Listing deleted: 68e52da425b244586c7caa8c","timestamp":"2025-10-08T06:02:55.528Z"}
+{"level":"info","message":"Listing deleted: 68e52af925b244586c7caa4d","timestamp":"2025-10-08T06:02:57.909Z"}
+{"level":"info","message":"Listing deleted: 68e5148fb6ee45d3b316ebe2","timestamp":"2025-10-08T06:03:00.067Z"}
+{"level":"info","message":"Listing deleted: 68e503ff561aa60c8c858c39","timestamp":"2025-10-08T06:03:02.858Z"}
+{"level":"info","message":"Listing deleted: 68e5032b561aa60c8c858c32","timestamp":"2025-10-08T06:03:04.933Z"}
+{"level":"info","message":"Listing deleted: 68e50290561aa60c8c858c2b","timestamp":"2025-10-08T06:03:07.427Z"}
+{"level":"info","message":"Listing deleted: 68e4fd3da62bb8be634c581e","timestamp":"2025-10-08T06:03:11.100Z"}
+{"level":"info","message":"Listing deleted: 68e4f8fbdd6778d64f9fca6d","timestamp":"2025-10-08T06:03:13.783Z"}
+{"level":"info","message":"New listing created: 68e5ff5214cc3387d5fe2b1d by user 68e4f661e2a4ecd91d1fbcf2","timestamp":"2025-10-08T06:06:11.011Z"}
+{"level":"info","message":"Listing approved: 68e5ff5214cc3387d5fe2b1d by admin 68e4f661e2a4ecd91d1fbcf2","timestamp":"2025-10-08T06:06:53.055Z"}
+{"level":"info","message":"Listing approved: 68e5fd6314cc3387d5fe2a4e by admin 68e4f661e2a4ecd91d1fbcf2","timestamp":"2025-10-08T06:06:56.403Z"}
+{"level":"info","message":"Listing deleted: 68e5ff5214cc3387d5fe2b1d","timestamp":"2025-10-08T06:07:00.702Z"}
+{"level":"info","message":"Listing deleted: 68e5fd6314cc3387d5fe2a4e","timestamp":"2025-10-08T06:07:03.237Z"}
+{"level":"error","message":"Resource not found","stack":"Error: Resource not found\n    at C:\\Users\\user\\Desktop\\cursor-roject\\backend\\middleware\\auth.js:80:21\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)","statusCode":404,"timestamp":"2025-10-08T06:08:11.814Z"}
+{"level":"info","message":"Listing deleted: 68e5fa2dd012ffece9a6cf78","timestamp":"2025-10-08T06:08:14.233Z"}
+{"level":"info","message":"Uploaded 1 images","timestamp":"2025-10-08T06:09:42.983Z"}
+{"level":"info","message":"New listing created: 68e6002614cc3387d5fe2b73 by user 68e4f661e2a4ecd91d1fbcf2","timestamp":"2025-10-08T06:09:43.004Z"}
+{"level":"error","message":"Listing not found","stack":"Error: Listing not found\n    at exports.getListing (C:\\Users\\user\\Desktop\\cursor-roject\\backend\\controllers\\listingsController.js:72:21)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)","statusCode":404,"timestamp":"2025-10-08T06:09:51.244Z"}
+{"level":"error","message":"Listing not found","stack":"Error: Listing not found\n    at exports.getListing (C:\\Users\\user\\Desktop\\cursor-roject\\backend\\controllers\\listingsController.js:72:21)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)","statusCode":404,"timestamp":"2025-10-08T06:09:52.296Z"}
+{"level":"info","message":"Listing approved: 68e6002614cc3387d5fe2b73 by admin 68e4f661e2a4ecd91d1fbcf2","timestamp":"2025-10-08T06:10:06.254Z"}
+{"level":"info","message":"Server running in development mode on port 5000","timestamp":"2025-10-08T06:20:36.530Z"}
+{"level":"info","message":"MongoDB Connected: localhost","timestamp":"2025-10-08T06:20:36.549Z"}
+{"level":"info","message":"Uploaded 3 images","timestamp":"2025-10-08T06:21:38.558Z"}
+{"level":"info","message":"New listing created: 68e602f2b11c9c6acabb155c by user 68e5e550d9975644994b5e16","timestamp":"2025-10-08T06:21:38.602Z"}
+{"level":"info","message":"Deleted image: ethiopia-market/listings/rrn96fnly8fmos85yktd","timestamp":"2025-10-08T06:21:47.298Z"}
+{"level":"info","message":"Listing deleted: 68e5f5990cf5114eb6a03557","timestamp":"2025-10-08T06:21:47.303Z"}
+{"level":"info","message":"Listing approved: 68e602f2b11c9c6acabb155c by admin 68e4f661e2a4ecd91d1fbcf2","timestamp":"2025-10-08T06:22:03.350Z"}
