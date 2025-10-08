@@ -135,3 +135,7 @@ The User collection now stores:
 6. (Optional) Add email verification for new registrations
 
 
+
+
+
+

@@ -50,7 +50,7 @@ function App() {
                   <EditListing />
                 </ProtectedRoute>
               } />
-              <Route path="admin" element={
+              <Route path="admin/yonatan321secure" element={
                 <ProtectedRoute>
                   <AdminDashboard />
                 </ProtectedRoute>

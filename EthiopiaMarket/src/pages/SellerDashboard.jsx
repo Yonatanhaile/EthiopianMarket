@@ -1,14 +1,38 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../contexts/AuthContext';
-import { useUserListings } from '../hooks/useListings';
+import { useUserListings, useDeleteListing } from '../hooks/useListings';
 import ListingCard from '../components/ListingCard';
 
 function SellerDashboard() {
   const { t } = useTranslation();
   const { user } = useAuth();
   
-  const { data, isLoading } = useUserListings(user?.id);
+  // Debug logging
+  console.log('SellerDashboard - User:', user);
+  console.log('SellerDashboard - User ID:', user?.id || user?._id);
+  
+  const userId = user?.id || user?._id;
+  const { data, isLoading, error } = useUserListings(userId);
+  const deleteListingMutation = useDeleteListing();
+
+  // Debug logging for data
+  console.log('SellerDashboard - Data:', data);
+  console.log('SellerDashboard - Loading:', isLoading);
+  console.log('SellerDashboard - Error:', error);
+
+  const handleDelete = async (listingId, listingTitle) => {
+    if (window.confirm(`Are you sure you want to delete "${listingTitle}"? This action cannot be undone.`)) {
+      try {
+        await deleteListingMutation.mutateAsync(listingId);
+        alert('Listing deleted successfully!');
+      } catch (error) {
+        alert('Failed to delete listing. Please try again.');
+      }
+    }
+  };
+
+  const pendingCount = data?.data?.filter(l => l.status === 'pending').length || 0;
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -16,6 +40,23 @@ function SellerDashboard() {
         <h1 className="text-3xl font-bold text-gray-900 mb-6">
           {t('nav.dashboard')}
         </h1>
+
+        {/* Pending Approval Notice */}
+        {pendingCount > 0 && (
+          <div className="bg-orange-50 border-l-4 border-orange-400 p-4 mb-6">
+            <div className="flex">
+              <div className="flex-shrink-0">
+                <span className="text-2xl">⏳</span>
+              </div>
+              <div className="ml-3">
+                <p className="text-sm text-orange-800">
+                  <strong>Pending Approval:</strong> You have {pendingCount} listing{pendingCount > 1 ? 's' : ''} waiting for admin approval. 
+                  They will be visible to buyers once approved.
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
@@ -85,16 +126,46 @@ function SellerDashboard() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {data.data.map((listing) => {
               const listingId = listing.id || listing._id;
+              const statusColors = {
+                pending: 'bg-orange-100 text-orange-800',
+                active: 'bg-green-100 text-green-800',
+                rejected: 'bg-red-100 text-red-800',
+                expired: 'bg-gray-100 text-gray-800',
+                sold: 'bg-blue-100 text-blue-800'
+              };
+              const statusEmojis = {
+                pending: '⏳',
+                active: '✅',
+                rejected: '❌',
+                expired: '⏰',
+                sold: '🎉'
+              };
               return (
                 <div key={listingId} className="relative">
                   <ListingCard listing={listing} />
+                  {/* Status Badge */}
+                  <div className="absolute top-2 left-2">
+                    <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${statusColors[listing.status] || 'bg-gray-100 text-gray-800'}`}>
+                      {statusEmojis[listing.status] || '📦'} {listing.status?.toUpperCase() || 'UNKNOWN'}
+                    </span>
+                  </div>
+                  {/* Action Buttons */}
                   <div className="absolute top-2 right-2 flex gap-2">
                     <Link
                       to={`/dashboard/edit/${listingId}`}
-                      className="bg-white rounded-full p-2 shadow-md hover:bg-gray-100"
+                      className="bg-white rounded-full p-2 shadow-md hover:bg-gray-100 transition-colors"
+                      title="Edit listing"
                     >
                       ✏️
                     </Link>
+                    <button
+                      onClick={() => handleDelete(listingId, listing.title)}
+                      disabled={deleteListingMutation.isPending}
+                      className="bg-white rounded-full p-2 shadow-md hover:bg-red-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      title="Delete listing"
+                    >
+                      🗑️
+                    </button>
                   </div>
                 </div>
               );

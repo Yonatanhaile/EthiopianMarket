@@ -31,12 +31,25 @@ exports.getUser = async (req, res, next) => {
 // @access  Public
 exports.getUserListings = async (req, res, next) => {
   try {
-    const { page = 1, limit = 12, status = 'active' } = req.query;
+    const { page = 1, limit = 12, status } = req.query;
 
     const query = {
-      seller: req.params.id,
-      status
+      seller: req.params.id
     };
+
+    // Only filter by status if explicitly provided
+    // This allows owners to see all their listings (pending, active, rejected, etc.)
+    // But public viewers only see active listings
+    if (status) {
+      query.status = status;
+    } else {
+      // If viewing own listings (authenticated and owner), show all statuses
+      // Otherwise, only show active listings
+      const isOwner = req.user && req.user.id === req.params.id;
+      if (!isOwner) {
+        query.status = 'active';
+      }
+    }
 
     const listings = await Listing.find(query)
       .sort('-createdAt')

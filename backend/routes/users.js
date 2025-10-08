@@ -16,3 +16,7 @@ router.put('/avatar', protect, updateAvatar);
 
 module.exports = router;
 
+
+
+
+

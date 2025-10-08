@@ -39,6 +39,18 @@ export function useUpdateListing() {
   });
 }
 
+export function useDeleteListing() {
+  const queryClient = useQueryClient();
+  
+  return useMutation({
+    mutationFn: (id) => api.deleteListing(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['listings'] });
+      queryClient.invalidateQueries({ queryKey: ['userListings'] });
+    },
+  });
+}
+
 export function useUser(id) {
   return useQuery({
     queryKey: ['user', id],
@@ -52,6 +64,45 @@ export function useUserListings(userId) {
     queryKey: ['userListings', userId],
     queryFn: () => api.getUserListings(userId),
     enabled: !!userId,
+  });
+}
+
+export function useAdminStats() {
+  return useQuery({
+    queryKey: ['adminStats'],
+    queryFn: () => api.getAdminStats(),
+  });
+}
+
+export function usePendingListings() {
+  return useQuery({
+    queryKey: ['pendingListings'],
+    queryFn: () => api.getPendingListings(),
+  });
+}
+
+export function useApproveListing() {
+  const queryClient = useQueryClient();
+  
+  return useMutation({
+    mutationFn: (id) => api.approveListing(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['pendingListings'] });
+      queryClient.invalidateQueries({ queryKey: ['adminStats'] });
+      queryClient.invalidateQueries({ queryKey: ['listings'] });
+    },
+  });
+}
+
+export function useRejectListing() {
+  const queryClient = useQueryClient();
+  
+  return useMutation({
+    mutationFn: ({ id, reason }) => api.rejectListing(id, reason),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['pendingListings'] });
+      queryClient.invalidateQueries({ queryKey: ['adminStats'] });
+    },
   });
 }
 

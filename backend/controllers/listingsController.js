@@ -63,6 +63,16 @@ exports.getListing = async (req, res, next) => {
       return next(new ErrorResponse('Listing not found', 404));
     }
 
+    // Only show pending/rejected listings to the owner
+    if (listing.status !== 'active') {
+      // Check if user is authenticated and is the owner
+      const isOwner = req.user && (req.user.id === listing.seller._id.toString() || req.user.id === listing.seller.id);
+      
+      if (!isOwner) {
+        return next(new ErrorResponse('Listing not found', 404));
+      }
+    }
+
     res.status(200).json({
       success: true,
       data: listing
@@ -93,7 +103,7 @@ exports.createListing = async (req, res, next) => {
       uploadedImages = await uploadMultipleImages(images, 'listings');
     }
 
-    // Create listing
+    // Create listing with pending status (requires admin approval)
     const listing = await Listing.create({
       title,
       shortDescription,
@@ -102,7 +112,8 @@ exports.createListing = async (req, res, next) => {
       region,
       images: uploadedImages,
       contactMethods,
-      seller: req.user.id
+      seller: req.user.id,
+      status: 'pending'  // Explicitly set to pending for admin approval
     });
 
     // Populate seller info

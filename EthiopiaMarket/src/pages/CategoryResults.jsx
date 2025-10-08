@@ -9,7 +9,12 @@ import ListingCard from '../components/ListingCard';
 function CategoryResults() {
   const { category } = useParams();
   const { t } = useTranslation();
-  const [filters, setFilters] = useState({ category, search: '', region: '' });
+  const [filters, setFilters] = useState({ 
+    category, 
+    search: '', 
+    region: '',
+    status: 'active'  // Only show approved listings
+  });
 
   const { data, isLoading } = useListings(filters);
 

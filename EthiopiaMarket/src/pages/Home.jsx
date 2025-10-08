@@ -10,7 +10,11 @@ function Home() {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   
-  const { data, isLoading, error } = useListings({ search: searchQuery });
+  // Only fetch active (approved) listings for public view
+  const { data, isLoading, error } = useListings({ 
+    search: searchQuery,
+    status: 'active' 
+  });
 
   const categories = [
     { id: 'electronics', icon: '📱', color: 'bg-blue-100 text-blue-600' },

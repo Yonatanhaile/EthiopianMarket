@@ -28,8 +28,7 @@ function CreateListing() {
   const onSubmit = async (data) => {
     // Only submit if we're on the final step
     if (step !== 4) {
-      nextStep();
-      return;
+      return; // Prevent any submission on non-final steps
     }
 
     try {
@@ -45,15 +44,33 @@ function CreateListing() {
       };
 
       await createListingMutation.mutateAsync(listingData);
-      alert(t('create.success'));
+      alert('Listing submitted successfully! Your listing is pending admin approval and will be visible once approved.');
       navigate('/dashboard');
     } catch (error) {
       alert(t('create.error'));
     }
   };
 
-  const nextStep = () => setStep(s => Math.min(s + 1, 4));
-  const prevStep = () => setStep(s => Math.max(s - 1, 1));
+  const nextStep = (e) => {
+    if (e) {
+      e.preventDefault(); // Prevent form submission
+    }
+    setStep(s => Math.min(s + 1, 4));
+  };
+  
+  const prevStep = (e) => {
+    if (e) {
+      e.preventDefault(); // Prevent form submission
+    }
+    setStep(s => Math.max(s - 1, 1));
+  };
+
+  // Prevent form submission on Enter key press except on final step
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' && step !== 4) {
+      e.preventDefault();
+    }
+  };
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -84,7 +101,7 @@ function CreateListing() {
           </div>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="bg-white rounded-lg shadow-md p-6">
+        <form onSubmit={handleSubmit(onSubmit)} onKeyDown={handleKeyDown} className="bg-white rounded-lg shadow-md p-6">
           {/* Step 1: Basic Information */}
           {step === 1 && (
             <div className="space-y-6">
@@ -308,7 +325,7 @@ function CreateListing() {
           <div className="flex justify-between mt-8 pt-6 border-t border-gray-200">
             <button
               type="button"
-              onClick={prevStep}
+              onClick={(e) => prevStep(e)}
               disabled={step === 1}
               className="btn-secondary disabled:opacity-50 disabled:cursor-not-allowed"
             >
@@ -326,7 +343,7 @@ function CreateListing() {
             ) : (
               <button
                 type="button"
-                onClick={nextStep}
+                onClick={(e) => nextStep(e)}
                 className="btn-primary"
               >
                 Next →

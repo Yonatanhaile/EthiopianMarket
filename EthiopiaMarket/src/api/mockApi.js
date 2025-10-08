@@ -128,6 +128,14 @@ export const api = {
     return response;
   },
 
+  // DELETE /api/listings/:id
+  deleteListing: async (id) => {
+    const response = await apiClient(`/listings/${id}`, {
+      method: 'DELETE'
+    });
+    return response;
+  },
+
   // POST /api/messages
   sendMessage: async (messageData) => {
     const response = await apiClient('/messages', {
@@ -202,6 +210,7 @@ export const getListings = api.getListings;
 export const getListingById = api.getListingById;
 export const createListing = api.createListing;
 export const updateListing = api.updateListing;
+export const deleteListing = api.deleteListing;
 export const sendMessage = api.sendMessage;
 export const registerUser = api.registerUser;
 export const loginUser = api.loginUser;
